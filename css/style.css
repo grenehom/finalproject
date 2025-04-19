@@ -23,7 +23,7 @@ body {
   background-color: black;
 }
 
-/* 🪄 Scene container for the stairs and cubes. Positioned full screen */
+/* Scene container for the stairs and cubes. Positioned full screen */
 .scene {
   width: 100vw;
   height: 100vh;
@@ -48,19 +48,21 @@ body {
 .cube {
   top: 37%;
   left: 64%;
-  width: 350px;
+  width: clamp(80px, 10vw, 200px);
   animation-delay: 0.5s;
 }
+
 .block {
   top: 38%;
   left: 41%;
-  width: 240px;
+  width: clamp(80px, 8vw, 160px);
   animation-delay: 1s;
 }
+
 .square {
   top: 43%;
   left: 56.5%;
-  width: 150px;
+  width: clamp(60px, 6vw, 120px);
   animation-delay: 1.5s;
 }
 .podium {
