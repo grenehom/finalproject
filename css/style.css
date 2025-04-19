@@ -1,0 +1,349 @@
+/* 🎨 Import custom pixel font to give the whole site a retro arcade vibe */
+@font-face {
+  font-family: "Upheaval";
+  src: url("../fonts/upheaval-tt-brk/upheavtt.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply font to modal text for a consistent pixel feel */
+.modal-content h1,
+.modal-content p,
+.modal-content button {
+  font-family: "Upheaval", sans-serif;
+}
+
+/* Set base body to remove scrollbars and fix background */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color: black;
+}
+
+/* 🪄 Scene container for the stairs and cubes. Positioned full screen */
+.scene {
+  width: 100vw;
+  height: 100vh;
+  background: url("../images/Background.png") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+/* Floating effect shared across elements */
+.floating {
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Specific positioning for objects in the scene */
+.stairs {
+  bottom: 18%;
+  left: 43%;
+  width: 14%;
+  animation: floatSoft 4s ease-in-out infinite;
+}
+.cube {
+  top: 37%;
+  left: 64%;
+  width: 350px;
+  animation-delay: 0.5s;
+}
+.block {
+  top: 38%;
+  left: 41%;
+  width: 240px;
+  animation-delay: 1s;
+}
+.square {
+  top: 43%;
+  left: 56.5%;
+  width: 150px;
+  animation-delay: 1.5s;
+}
+.podium {
+  bottom: 43%;
+  left: 51.5%;
+  width: 1%;
+  transform: translateX(-50%);
+  animation-delay: 2s;
+}
+
+/* Floating animations (soft vs exaggerated for different elements) */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-25px) scale(1.05);
+  }
+}
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Zoom-in animation used when player walks toward the podium */
+@keyframes zoomIn {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  25% {
+    transform: scale(2) translateY(-10px);
+  }
+  50% {
+    transform: scale(4) translateY(-20px);
+  }
+  75% {
+    transform: scale(6) translateY(-30px);
+  }
+  100% {
+    transform: scale(8) translateY(-40px);
+  }
+}
+
+/* Applied when the player reaches the podium to zoom in */
+.scene.zoomed {
+  animation: zoomIn 8s ease-in-out forwards;
+  transform-origin: 51% 57%; /* anchors zoom at the podium */
+}
+
+/* Font and styling defaults */
+body {
+  font-family: "Upheaval", sans-serif;
+  font-size: 4rem;
+  image-rendering: pixelated; /* keeps crisp look for pixel graphics */
+}
+
+/* 🎮 Modal for 'Welcome Back' intro */
+.modal {
+  display: none; /* hidden until triggered */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.75); /* optional dim overlay */
+}
+.modal.show {
+  display: flex;
+}
+
+/* Inner modal box with pixel-styled UI and glowing effect */
+.modal-content {
+  background: #1e1a14;
+  border: 6px solid #ffb900;
+  border-radius: 14px;
+  box-shadow: 0 0 0 6px #000, 0 0 24px 6px #ffcc33,
+    0 0 48px 12px rgba(255, 204, 51, 0.6);
+  font-family: "Upheaval", sans-serif;
+  padding: 6rem 10rem;
+  text-align: center;
+  text-transform: uppercase;
+  animation: fadeIn 1s ease;
+  margin-top: -5vh;
+  color: #fff;
+}
+
+/* Header and subtitle inside modal */
+.modal-content h1 {
+  font-size: 5.5rem;
+  color: #ffe100;
+  text-shadow: 4px 4px #000;
+}
+.modal-content .subtitle {
+  font-size: 6rem;
+  margin-bottom: 4rem;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+}
+
+/* 🕹️ Button for 'Begin' */
+.start-button {
+  background: #000;
+  color: #fff;
+  font-family: "Upheaval", sans-serif;
+  font-size: 2rem;
+  border: 3px solid #ffcc00;
+  padding: 2rem 4rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 0.1s ease;
+}
+.start-button:hover {
+  transform: scale(1.05);
+  background: #ffcc00;
+  color: #000;
+  box-shadow: 3px 3px 0 #fff;
+}
+.start-button:focus {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+  box-shadow: 0 0 12px #ffcc33, 0 0 24px #ffcc33;
+}
+
+/* 🃏 Card screen that shows up after clicking 'Begin' */
+#cardScreen.hidden {
+  display: none;
+}
+#cardScreen.show {
+  display: flex;
+}
+
+#cardScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("../images/bg.png") repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Layout for two cards side-by-side */
+.card-container {
+  display: flex;
+  gap: 30rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for each card image */
+.card {
+  width: 800px;
+  height: auto;
+  animation: floatCards 6s ease-in-out infinite;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 200px 800px rgba(0, 0, 0, 0.6); /* base shadow */
+  border-radius: 12px;
+}
+.card:hover {
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6),
+    0 0 200px 100px rgba(255, 0, 0, 0.5);
+  transform: scale(2.02);
+  z-index: 10;
+}
+
+/* Floating animation for cards */
+@keyframes floatCards {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.01);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.02);
+  }
+  75% {
+    transform: translateY(-8px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Generic fade-in used in modals and transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ♠️ Flip card when selected */
+.flip {
+  animation: flipCard 0.6s forwards;
+}
+@keyframes flipCard {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+/* Final blank screen after flipping */
+#blankPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
+}
+#blankPage.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Support for 3D card effects */
+.card img {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* red room scene! */
+#redRoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url("../images/redroom.png") no-repeat center center;
+  background-size: cover;
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#redRoom.show {
+  display: flex; /* must be flex for centering to work */
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Red room grid holds the two images */
+.red-room-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10rem;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Mirror and Portrait styling */
+.decor {
+  max-width: 800px;
+  height: auto;
+}

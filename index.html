@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Retro Walk-Up Scene</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main role="main">
+      <!-- Items floating in the opening scene -->
+      <div class="scene">
+        <img src="images/Stairs.png" class="floating stairs" alt="stairs" />
+        <img src="images/cube.png" class="floating cube" alt="cube" />
+        <img
+          src="images/block.png"
+          class="floating block"
+          alt="floating block"
+        />
+        <img
+          src="images/square.png"
+          class="floating square"
+          alt="floating square"
+        />
+        <img
+          src="images/tiny-podium.png"
+          class="floating podium"
+          id="podium"
+          alt="tiny-podium"
+        />
+      </div>
+
+      <!-- divs used to create a modal to start the game -->
+      <div id="introModal" class="modal">
+        <div class="modal-content">
+          <h1 class="title">Welcome Back</h1>
+          <p class="subtitle">Ready to play?</p>
+          <button onclick="startGame()" class="start-button">Begin</button>
+        </div>
+      </div>
+      <!-- once user clicks begins, they are given a queen or jack card -->
+      <div id="cardScreen" class="hidden">
+        <div class="card-container">
+          <img
+            src="images/qofhearts.png"
+            alt="Queen of Hearts"
+            class="card card-left"
+            id="queenCard"
+          />
+          <img src="images/Joker.png" alt="Joker" class="card card-right" />
+        </div>
+      </div>
+      <!-- when user clicks on card, takes them to new page -->
+      <div id="blankPage" class="hidden"></div>
+      <!-- Transition from blank page to the red room  -->
+      <div id="redRoom" class="hidden">
+        <div class="red-room-grid">
+          <!-- Mirror click opens lightbox -->
+          <a
+            href="images/mirror-scene.png"
+            data-lightbox="redroom"
+            data-title="You see your reflection... and a countdown begins."
+          >
+            <img src="images/mirror.png" alt="Mirror" class="decor" />
+          </a>
+          <img src="images/picture.png" alt="Portrait" class="decor" />
+        </div>
+      </div>
+
+      <script src="script.js"></script>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  </body>
+</html>
