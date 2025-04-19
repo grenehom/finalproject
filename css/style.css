@@ -1,4 +1,4 @@
-/* 🎨 Import custom pixel font to give the whole site a retro arcade vibe */
+/* Import custom pixel font to give the whole site a retro arcade vibe */
 @font-face {
   font-family: "Upheaval";
   src: url("../fonts/upheaval-tt-brk/upheavtt.ttf") format("truetype");
@@ -119,11 +119,11 @@ body {
 /* Font and styling defaults */
 body {
   font-family: "Upheaval", sans-serif;
-  font-size: 4rem;
+  font-size: clamp(1rem, 2vw, 3rem);
   image-rendering: pixelated; /* keeps crisp look for pixel graphics */
 }
 
-/* 🎮 Modal for 'Welcome Back' intro */
+/* Modal for 'Welcome Back' intro */
 .modal {
   display: none; /* hidden until triggered */
   position: fixed;
@@ -148,7 +148,7 @@ body {
   box-shadow: 0 0 0 6px #000, 0 0 24px 6px #ffcc33,
     0 0 48px 12px rgba(255, 204, 51, 0.6);
   font-family: "Upheaval", sans-serif;
-  padding: 6rem 10rem;
+  padding: clamp(2rem, 5vw, 4rem);
   text-align: center;
   text-transform: uppercase;
   animation: fadeIn 1s ease;
@@ -158,18 +158,18 @@ body {
 
 /* Header and subtitle inside modal */
 .modal-content h1 {
-  font-size: 5.5rem;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   color: #ffe100;
   text-shadow: 4px 4px #000;
 }
 .modal-content .subtitle {
-  font-size: 6rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   margin-bottom: 4rem;
   color: #fff;
   text-shadow: 2px 2px #000;
 }
 
-/* 🕹️ Button for 'Begin' */
+/* Button for 'Begin' */
 .start-button {
   background: #000;
   color: #fff;
@@ -194,7 +194,7 @@ body {
   box-shadow: 0 0 12px #ffcc33, 0 0 24px #ffcc33;
 }
 
-/* 🃏 Card screen that shows up after clicking 'Begin' */
+/* Card screen that shows up after clicking 'Begin' */
 #cardScreen.hidden {
   display: none;
 }
@@ -221,14 +221,15 @@ body {
 /* Layout for two cards side-by-side */
 .card-container {
   display: flex;
-  gap: 30rem;
+  gap: clamp(2rem, 10vw, 8rem);
+
   justify-content: center;
   align-items: center;
 }
 
 /* Styling for each card image */
 .card {
-  width: 800px;
+  width: clamp(200px, 40vw, 400px);
   height: auto;
   animation: floatCards 6s ease-in-out infinite;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -273,7 +274,7 @@ body {
   }
 }
 
-/* ♠️ Flip card when selected */
+/* Flip card when selected */
 .flip {
   animation: flipCard 0.6s forwards;
 }
