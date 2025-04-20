@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Retro Walk-Up Scene</title>
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Removed Lightbox CSS because it added a white background overlay 
+         and interfered with our desired custom countdown scene -->
+    <!--
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
       rel="stylesheet"
     />
+    -->
   </head>
   <body>
     <main role="main">
@@ -16,25 +21,17 @@
       <div class="scene">
         <img src="images/Stairs.png" class="floating stairs" alt="stairs" />
         <img src="images/cube.png" class="floating cube" alt="cube" />
-        <img
-          src="images/block.png"
-          class="floating block"
-          alt="floating block"
-        />
-        <img
-          src="images/square.png"
-          class="floating square"
-          alt="floating square"
-        />
+        <img src="images/block.png" class="floating block" alt="block" />
+        <img src="images/square.png" class="floating square" alt="square" />
         <img
           src="images/tiny-podium.png"
           class="floating podium"
           id="podium"
-          alt="tiny-podium"
+          alt="podium"
         />
       </div>
 
-      <!-- divs used to create a modal to start the game -->
+      <!-- Start Modal -->
       <div id="introModal" class="modal">
         <div class="modal-content">
           <h1 class="title">Welcome Back</h1>
@@ -42,7 +39,8 @@
           <button onclick="startGame()" class="start-button">Begin</button>
         </div>
       </div>
-      <!-- once user clicks begins, they are given a queen or jack card -->
+
+      <!-- Card screen -->
       <div id="cardScreen" class="hidden">
         <div class="card-container">
           <img
@@ -54,25 +52,45 @@
           <img src="images/Joker.png" alt="Joker" class="card card-right" />
         </div>
       </div>
-      <!-- when user clicks on card, takes them to new page -->
+
+      <!-- Blank transition -->
       <div id="blankPage" class="hidden"></div>
-      <!-- Transition from blank page to the red room  -->
+
+      <!-- Red Room -->
       <div id="redRoom" class="hidden">
+        <div class="redroom-caption">
+          <div class="typewriter-container">
+            <span id="typewriter-text"></span>
+          </div>
+        </div>
+
         <div class="red-room-grid">
-          <!-- Mirror click opens lightbox -->
-          <a
-            href="images/mirror-scene.png"
-            data-lightbox="redroom"
-            data-title="You see your reflection... and a countdown begins."
-          >
+          <!-- Mirror interaction triggers countdown (no more lightbox) -->
+          <a id="mirrorLink" href="#">
             <img src="images/mirror.png" alt="Mirror" class="decor" />
           </a>
           <img src="images/picture.png" alt="Portrait" class="decor" />
         </div>
       </div>
 
-      <script src="script.js"></script>
+      <div id="mirrorRevealScreen" class="hidden">
+        <div class="mirror-background">
+          <div id="countdownNumber">3</div>
+          <img
+            src="images/mirror-scene.png"
+            alt="Glowing Mirror Reflection"
+            class="mirror-center"
+          />
+          <div id="countdownMessage">YOU ARE NOT ALONE</div>
+        </div>
+      </div>
     </main>
+
+    <!-- Removed Lightbox JS since it’s no longer needed -->
+    <!--   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    -->
+
+    <script src="script.js"></script>
   </body>
 </html>
