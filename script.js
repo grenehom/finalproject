@@ -93,11 +93,10 @@ document.getElementById("mirrorLink").addEventListener("click", (e) => {
   const mirrorScene = document.getElementById("mirrorRevealScreen");
   mirrorScene.classList.remove("hidden");
 
-  // Optional: Start countdown or transition after delay
   setTimeout(() => {
     mirrorScene.classList.add("hidden");
-    startCountdownScene(); // Existing function
-  }, 4000); // Adjust duration as needed
+    startCountdownScene();
+  }, 1000); //
 });
 
 // This function shows multiple lines of text one after another, like a story.
@@ -105,7 +104,7 @@ document.getElementById("mirrorLink").addEventListener("click", (e) => {
 // - texts: an array of lines to show
 // - targetId: the ID of the element where the text should go
 // - delayBetween: how long to wait between lines (in milliseconds)
-function typeTextSequence(texts, targetId, delayBetween = 1000) {
+function typeTextSequence(texts, targetId, delayBetween = 0) {
   const target = document.getElementById(targetId);
   let textIndex = 0;
 
@@ -118,7 +117,7 @@ function typeTextSequence(texts, targetId, delayBetween = 1000) {
       if (charIndex < line.length) {
         target.textContent += line.charAt(charIndex);
         charIndex++;
-        setTimeout(typeChar, 100); // Controls typing speed
+        setTimeout(typeChar, 60); // Controls typing speed
       } else if (onComplete) {
         setTimeout(onComplete, delayBetween); // Wait before typing next line
       }
@@ -141,12 +140,37 @@ function typeTextSequence(texts, targetId, delayBetween = 1000) {
 
 // This function handles the countdown screen after the mirror interaction
 // Displays 3 → 2 → 1 with changing messages over time
-function startCountdownScene() {
-  const countdownScreen = document.getElementById("countdownScreen");
-  const number = document.getElementById("countdownNumber");
-  const message = document.getElementById("countdownMessage");
 
+function startCountdownScene() {
+  const countdownScreen = document.getElementById("mirrorRevealScreen");
+  const number = document.createElement("div");
+  const message = document.createElement("div");
+
+  number.setAttribute("id", "countdownNumber");
+  message.setAttribute("id", "countdownMessage");
+
+  countdownScreen.appendChild(number);
+  countdownScreen.appendChild(message);
   countdownScreen.classList.remove("hidden");
+
+  // Style the countdown number + message to appear at the top & bottom
+  number.style.position = "absolute";
+  number.style.top = "30%";
+  number.style.left = "50%";
+  number.style.transform = "translateX(-50%)";
+  number.style.color = "#FFE100";
+  number.style.fontFamily = "Upheaval, sans-serif";
+  number.style.fontSize = "6rem";
+  number.style.textShadow = "4px 4px #000";
+
+  message.style.position = "absolute";
+  message.style.bottom = "30%";
+  message.style.left = "50%";
+  message.style.transform = "translateX(-50%)";
+  message.style.color = "#FFE100";
+  message.style.fontFamily = "Upheaval, sans-serif";
+  message.style.fontSize = "2.5rem";
+  message.style.textShadow = "2px 2px #000";
 
   const countdownSteps = [
     { value: "3", text: "YOU ARE NOT ALONE" },
@@ -167,7 +191,6 @@ function startCountdownScene() {
 
   nextStep();
 }
-
 /*
 //  Lightbox logic removed
 // initially used Lightbox2 to expand an image when the mirror was clicked.
