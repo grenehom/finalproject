@@ -336,16 +336,18 @@ body {
 /* Red room grid holds the two images */
 .red-room-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 4rem;
   justify-items: center;
   align-items: center;
   width: 100%;
-  max-width: 100%;
+  padding: 2rem;
 }
 
 /* Mirror and Portrait styling */
 .decor {
-  max-width: 800px;
+  width: 100%;
+  max-width: 400px;
   height: auto;
+  object-fit: contain;
 }
