@@ -155,7 +155,7 @@ function startCountdownScene() {
 
   // Style the countdown number + message to appear at the top & bottom
   number.style.position = "absolute";
-  number.style.top = "15%";
+  number.style.top = "35%";
   number.style.left = "50%";
   number.style.transform = "translateX(-50%)";
   number.style.color = "#FFE100";
@@ -164,7 +164,7 @@ function startCountdownScene() {
   number.style.textShadow = "4px 4px #000";
 
   message.style.position = "absolute";
-  message.style.bottom = "15%";
+  message.style.bottom = "35%";
   message.style.left = "50%";
   message.style.transform = "translateX(-50%)";
   message.style.color = "#FFE100";
