@@ -445,3 +445,102 @@ body {
   margin-top: 2rem;
   text-shadow: 2px 2px #000;
 }
+
+#glitchScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease-in-out;
+}
+
+#glitchScreen.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.glitch-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+/* choices buttons in glitch scene */
+#glitchChoices {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 3rem;
+  z-index: 10001;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.choice-button {
+  font-family: "Upheaval", sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  background-color: #ffe100;
+  color: #000;
+  padding: 1.2rem 2.5rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 8px #ffe100, 2px 2px 0 #000;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.choice-button:hover {
+  background-color: #ea1a90;
+  color: #ffe100;
+  transform: scale(1.1);
+  box-shadow: 0 0 16px #ffe100, 2px 2px 0 #ffe100;
+}
+
+.choice-button:focus {
+  outline: 3px solid #00f0ff;
+  outline-offset: 6px;
+  background-color: #ea1a90;
+  color: #ffe100;
+  box-shadow: 0 0 16px #00f0ff, 2px 2px 0 #ffe100;
+  transform: scale(1.1);
+}
+
+/* Music Styles */
+
+#music-controls {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+  border-radius: 10px;
+  color: #ffe100;
+  font-family: "Upheaval", sans-serif;
+  z-index: 100000;
+}
+
+#music-controls button {
+  margin-right: 10px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: #ffe100;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-family: "Upheaval", sans-serif;
+}
+
+#music-controls input[type="range"] {
+  vertical-align: middle;
+}
