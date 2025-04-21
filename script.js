@@ -33,6 +33,7 @@ window.addEventListener("load", () => {
 function startGame() {
   const modal = document.getElementById("introModal");
   const cardScreen = document.getElementById("cardScreen");
+  const bgMusic = document.getElementById("backgroundMusic");
 
   if (modal) {
     modal.classList.remove("show");
@@ -44,6 +45,13 @@ function startGame() {
     cardScreen.classList.remove("hidden");
     cardScreen.classList.add("show");
     console.log("Card screen shown");
+  }
+
+  if (bgMusic) {
+    bgMusic.volume = 0.4; // optional: lower the volume
+    bgMusic.play().catch((e) => {
+      console.log("Autoplay blocked, waiting for user interaction:", e);
+    });
   }
 }
 
@@ -155,7 +163,7 @@ function startCountdownScene() {
 
   // Style the countdown number + message to appear at the top & bottom
   number.style.position = "absolute";
-  number.style.top = "35%";
+  number.style.top = "20%";
   number.style.left = "50%";
   number.style.transform = "translateX(-50%)";
   number.style.color = "#FFE100";
@@ -164,7 +172,7 @@ function startCountdownScene() {
   number.style.textShadow = "4px 4px #000";
 
   message.style.position = "absolute";
-  message.style.bottom = "35%";
+  message.style.bottom = "20%";
   message.style.left = "50%";
   message.style.transform = "translateX(-50%)";
   message.style.color = "#FFE100";
@@ -186,11 +194,57 @@ function startCountdownScene() {
       message.textContent = countdownSteps[i].text;
       i++;
       setTimeout(nextStep, 2000);
+    } else {
+      // After final step, fade to black and show glitch image
+      countdownScreen.style.transition = "opacity 1.5s ease-in-out";
+      countdownScreen.style.opacity = "0";
+
+      setTimeout(() => {
+        countdownScreen.classList.add("hidden");
+
+        // Show glitch screen and buttons
+
+        const glitch = document.getElementById("glitchScreen");
+        glitch.classList.remove("hidden");
+        glitch.classList.add("show");
+
+        const glitchChoices = document.getElementById("glitchChoices");
+        glitchChoices.classList.remove("hidden");
+      }, 1600);
     }
   }
 
   nextStep();
 }
+
+const music = document.getElementById("backgroundMusic");
+const playBtn = document.getElementById("playMusic");
+const muteBtn = document.getElementById("muteMusic");
+const volumeSlider = document.getElementById("musicVolume");
+const volumeDisplay = document.getElementById("musicVolumeDisplay");
+
+// Set default volume
+music.volume = volumeSlider.value / 100;
+
+// Play music
+playBtn.addEventListener("click", () => {
+  music.play().catch((e) => {
+    console.log("Playback failed:", e);
+  });
+});
+
+// Mute / Unmute
+muteBtn.addEventListener("click", () => {
+  music.muted = !music.muted;
+  muteBtn.textContent = music.muted ? "Unmute" : "Mute";
+});
+
+// Volume slider
+volumeSlider.addEventListener("input", () => {
+  const vol = volumeSlider.value / 100;
+  music.volume = vol;
+  volumeDisplay.textContent = Math.round(vol * 100) + "%";
+});
 /*
 //  Lightbox logic removed
 // initially used Lightbox2 to expand an image when the mirror was clicked.
