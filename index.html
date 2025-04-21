@@ -34,6 +34,7 @@
       <!-- Start Modal -->
       <div id="introModal" class="modal">
         <div class="modal-content">
+          <!-- Take an axe screenshot and recognize there is an error and unsure why I have this in here -->
           <h1 class="title">Welcome Back</h1>
           <p class="subtitle">Ready to play?</p>
           <button onclick="startGame()" class="start-button">Begin</button>
@@ -84,6 +85,33 @@
           <div id="countdownMessage"></div>
         </div>
       </div>
+
+      <!-- Glitch Screen -->
+      <div id="glitchScreen" class="hidden">
+        <img src="images/glitch.png" alt="Glitch Image" class="glitch-img" />
+        <div id="glitchChoices" class="hidden">
+          <button class="choice-button" id="saveSelf">SAVE YOURSELF</button>
+          <button class="choice-button" id="saveStranger">SAVE STRANGER</button>
+        </div>
+      </div>
+
+      <!-- music controls -->
+      <div id="music-controls">
+        <button id="playMusic" aria-label="Play background music">Play</button>
+        <button id="muteMusic" aria-label="Mute background music">Mute</button>
+        <label for="musicVolume">Volume:</label>
+        <input type="range" id="musicVolume" min="0" max="100" value="40" />
+        <span id="musicVolumeDisplay">40%</span>
+      </div>
+
+      <!-- background audio -->
+      <audio id="backgroundMusic" loop preload="auto">
+        <source
+          src="audio/sleepy_head (online-audio-converter.com).mp3"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
     </main>
 
     <!-- Removed Lightbox JS since it’s no longer needed -->
